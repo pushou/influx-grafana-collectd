@@ -1,0 +1,6 @@
+CREATE DATABASE chronograf
+CREATE USER admincr WITH PASSWORD 'root'
+GRANT ALL ON chronograf TO admincr
+CREATE DATABASE collectdb 
+CREATE USER admincd WITH PASSWORD 'root'
+GRANT ALL ON collectdb TO admincd

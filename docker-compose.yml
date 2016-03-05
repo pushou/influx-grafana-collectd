@@ -1,0 +1,36 @@
+#statsd:
+#  image: registry.iutbeziers.fr/statsdinfluxdb
+#  ports:
+#    - "8125:8125/udp"
+#  env_file:
+#    - env.statsd
+#  links:
+#    - influxdb
+
+
+InfluxDbDataContainer:
+  image: registry.iutbeziers.fr/debian:latest
+  entrypoint: /bin/bash 
+  volumes:
+    - ./influxdb/data:/data
+    - ./influxdb/config/config.toml:/config/config.toml
+
+influxdb:
+  image: registry.iutbeziers.fr/influxdb0.10.2-1
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+    - "8090:8090"
+    - "25826/udp:25826/udp"
+  env_file:
+    - 'env.influxdb'
+  volumes_from:
+     - InfluxDbDataContainer
+
+
+grafana:
+  image: registry.iutbeziers.fr/grafana:0503
+  ports:
+    - "3000:3000"
+  links:
+    - influxdb
