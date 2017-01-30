@@ -16,7 +16,7 @@ InfluxDbDataContainer:
     - ./influxdb/config/config.toml:/config/config.toml
 
 influxdb:
-  image: registry.iutbeziers.fr/influxdb0.10.2-1
+  image: registry.iutbeziers.fr/influxdb
   ports:
     - "8083:8083"
     - "8086:8086"
@@ -29,7 +29,7 @@ influxdb:
 
 
 grafana:
-  image: registry.iutbeziers.fr/grafana:0503
+  image: registry.iutbeziers.fr/grafana
   ports:
     - "3000:3000"
   links:
